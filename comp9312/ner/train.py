@@ -65,12 +65,13 @@ def parse_args():
 
 
 def main(args):
+#     force=True
     logging.basicConfig(
         level=logging.INFO,
         handlers=[logging.StreamHandler(sys.stdout)],
         format="%(levelname)s\t%(name)s\t%(asctime)s\t%(message)s",
         datefmt="%a, %d %b %Y %H:%M:%S",
-        force=True
+        
     )
 
     # Set the seed for randomization
