@@ -36,12 +36,13 @@ class BertSeqTransform:
     def __call__(self, segment):
         subwords, tags, tokens = list(), list(), list()
         unk_token = Token(text="<UNK>")
-        print("self.vocab.tags===========", self.vocab.tags)
+       
 
         for token in segment:
+             print("token In data", token)
             token_subwords = self.encoder(token.text)
             subwords += token_subwords
-            tags += [self.vocab.tags[token.gold_tag]] + [self.vocab.tags["اسم"]] * (len(token_subwords) - 1)
+            tags += [self.vocab.tags[token.gold_tag]] + [self.vocab.tags["O"]] * (len(token_subwords) - 1)
             tokens += [token] + [unk_token] * (len(token_subwords) - 1)
 
         # Truncate to max_seq_len
@@ -55,8 +56,8 @@ class BertSeqTransform:
         subwords.insert(0, self.tokenizer.cls_token_id)
         subwords.append(self.tokenizer.sep_token_id)
 
-        tags.insert(0, self.vocab.tags["اسم"])
-        tags.append(self.vocab.tags["اسم"])
+        tags.insert(0, self.vocab.tags["O"])
+        tags.append(self.vocab.tags["O"])
 
         tokens.insert(0, unk_token)
         tokens.append(unk_token)
