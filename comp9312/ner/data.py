@@ -36,7 +36,7 @@ class BertSeqTransform:
     def __call__(self, segment):
         subwords, tags, tokens = list(), list(), list()
         unk_token = Token(text="<UNK>")
-        self.vocab.set_default_index(unk_token)
+#         self.vocab.set_default_index(unk_token)
 
         for token in segment:
             token_subwords = self.encoder(token.text)
