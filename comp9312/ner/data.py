@@ -44,7 +44,6 @@ class BertSeqTransform:
             print("token_subwords", token_subwords,"len" , len(token_subwords))
             subwords += token_subwords
             tags += [self.vocab.tags[token.gold_tag]]  + [self.vocab.tags["NOUN"]]* (len(token_subwords) - 1)
-#             print("token_subwords", token_subwords,"len" , len(token_subwords))
             tokens += [token] + [unk_token] * (len(token_subwords) - 1)
 
         # Truncate to max_seq_len
