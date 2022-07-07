@@ -55,8 +55,8 @@ class BertSeqTransform:
         subwords.insert(0, self.tokenizer.cls_token_id)
         subwords.append(self.tokenizer.sep_token_id)
 
-        tags.insert(0, self.vocab.tags["O"])
-        tags.append(self.vocab.tags["O"])
+        tags.insert(0, self.vocab.tags["NOUN"])
+        tags.append(self.vocab.tags["NOUN"])
 
         tokens.insert(0, unk_token)
         tokens.append(unk_token)
