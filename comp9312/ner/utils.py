@@ -65,6 +65,7 @@ def parse_conll_files(data_paths):
     token_vocab = vocab(counter)
 
     vocabs = vocabs(tokens=token_vocab, tags=tag_vocab)
+    print("vocab.tokens",  vocabs.tokens, "vocab.tags", vocabs.tags)
     return tuple(datasets), vocabs
 
 
