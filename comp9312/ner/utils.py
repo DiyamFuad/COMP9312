@@ -23,10 +23,10 @@ def conll_to_segments(filename):
                 segments.append(segment)
                 segment = list()
             else:
-                parts = token.split(",")
+                parts = token.split()
 #                 print("Parts Length",parts) 
                 if len(parts)>=2:
-#                     print("Part", parts[0],parts[1])
+                    print("Part", parts[0],parts[1])
                     token = Token(text=parts[0], gold_tag=parts[1])
                     segment.append(token)
 
