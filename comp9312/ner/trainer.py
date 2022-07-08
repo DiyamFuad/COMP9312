@@ -136,6 +136,7 @@ class BertTrainer:
                 train_loss,
                 val_loss,
                 val_metrics["micro_f1"],
+                val_metrics["accuracy"],
             )
 
             if val_loss < best_val_loss:
@@ -153,6 +154,7 @@ class BertTrainer:
                     self.timestep,
                     test_loss,
                     test_metrics["micro_f1"],
+                    test_metrics["accuracy"],
                 )
 
                 self.save()
