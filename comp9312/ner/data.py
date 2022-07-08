@@ -41,7 +41,6 @@ class BertSeqTransform:
 
         for token in segment:
             token_subwords = self.encoder(token.text)
-            print("token_subwords", token_subwords,"len" , len(token_subwords))
             subwords += token_subwords
             tags += [self.vocab.tags[token.gold_tag]]  + [self.vocab.tags["NOUN"]]* (len(token_subwords) - 1)
             tokens += [token] + [unk_token] * (len(token_subwords) - 1)
