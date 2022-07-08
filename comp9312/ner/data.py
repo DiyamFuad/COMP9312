@@ -44,18 +44,18 @@ class BertSeqTransform:
             token_subwords = self.encoder(token.text)
             subwords += token_subwords
 #             [self.vocab.tags["NOUN"]]
-# + [self.vocab.tags[token.gold_tag]]* (len(token_subwords) - 1)
-# + [unk_token] * (len(token_subwords) - 1)
-            tags += [self.vocab.tags[token.gold_tag]] 
-            tokens += [token] 
+# 
+# 
+            tags += [self.vocab.tags[token.gold_tag]] + [self.vocab.tags[token.gold_tag]]* (len(token_subwords) - 1)
+            tokens += [token] + [unk_token] * (len(token_subwords) - 1)
 
-#         # Truncate to max_seq_len
-#         if len(subwords) > self.max_seq_len - 2:
-#             text = " ".join([t.text for t in tokens if t.text != "UNK"])
-#             logger.info("Truncating the sequence %s to %d", text, self.max_seq_len - 2)
-#             subwords = subwords[:self.max_seq_len - 2]
-#             tags = tags[:self.max_seq_len - 2]
-#             tokens = tokens[:self.max_seq_len - 2]
+        # Truncate to max_seq_len
+        if len(subwords) > self.max_seq_len - 2:
+            text = " ".join([t.text for t in tokens if t.text != "UNK"])
+            logger.info("Truncating the sequence %s to %d", text, self.max_seq_len - 2)
+            subwords = subwords[:self.max_seq_len - 2]
+            tags = tags[:self.max_seq_len - 2]
+            tokens = tokens[:self.max_seq_len - 2]
 
         subwords.insert(0, self.tokenizer.cls_token_id)
         subwords.append(self.tokenizer.sep_token_id)
