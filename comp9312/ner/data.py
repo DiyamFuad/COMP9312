@@ -22,7 +22,8 @@ class Token:
 
 
 class BertSeqTransform:
-    def __init__(self, bert_model, vocab, max_seq_len=512):
+    #512
+    def __init__(self, bert_model, vocab, max_seq_len=70):
         self.tokenizer = BertTokenizer.from_pretrained(bert_model)
         self.encoder = partial(
             self.tokenizer.encode,
@@ -42,7 +43,8 @@ class BertSeqTransform:
         for token in segment:
             token_subwords = self.encoder(token.text)
             subwords += token_subwords
-            tags += [self.vocab.tags[token.gold_tag]]  + [self.vocab.tags["NOUN"]]* (len(token_subwords) - 1)
+#             [self.vocab.tags["NOUN"]]
+            tags += [self.vocab.tags[token.gold_tag]] * (len(token_subwords) - 1)
             tokens += [token] + [unk_token] * (len(token_subwords) - 1)
 
         # Truncate to max_seq_len
