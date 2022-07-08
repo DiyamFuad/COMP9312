@@ -23,7 +23,7 @@ class Token:
 
 class BertSeqTransform:
     #512
-    def __init__(self, bert_model, vocab, max_seq_len=70):
+    def __init__(self, bert_model, vocab, max_seq_len=512):
         self.tokenizer = BertTokenizer.from_pretrained(bert_model)
         self.encoder = partial(
             self.tokenizer.encode,
