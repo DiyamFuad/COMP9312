@@ -44,7 +44,7 @@ class BertSeqTransform:
             token_subwords = self.encoder(token.text)
             subwords += token_subwords
 #             [self.vocab.tags["NOUN"]]
-            tags += [self.vocab.tags[token.gold_tag]] * (len(token_subwords) - 1)
+            tags += [self.vocab.tags[token.gold_tag]] + [self.vocab.tags[token.gold_tag]]* (len(token_subwords) - 1)
             tokens += [token] + [unk_token] * (len(token_subwords) - 1)
 
         # Truncate to max_seq_len
