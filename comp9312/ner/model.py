@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 
 class BertTagger(nn.Module):
-    def __init__(self, bert_model="aubmindlab/bert-base-arabertv2", num_labels=2, dropout=0.2):
+    def __init__(self, bert_model="aubmindlab/bert-base-arabertv2", num_labels=2, dropout=0.05):
         super().__init__()
 
         self.bert_model = bert_model
